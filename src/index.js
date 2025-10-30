@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// Varsayılan CSS'i (index.css) projemizde kullanmadığımız için kaldırıyoruz veya siliyoruz.
+// import './index.css'; 
+
+import App from './App'; // Yeni App.js'imizi import ediyoruz
+// import reportWebVitals from './reportWebVitals'; // Bu da gereksiz
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App /> {/* Yeni Router yapısı içeren App'i render ediyoruz */}
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// Eğer raporlama kullanmıyorsanız bu kısmı silebilirsiniz
+// reportWebVitals();
