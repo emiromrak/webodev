@@ -11,15 +11,15 @@ const ShowDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useE?ect: İki ayrı API çağrısını yönetme
+
   useEffect(() => {
     const fetchDetails = async () => {
       setLoading(true);
       setError(null);
       try {
-        // 1. Dizi Bilgileri (axios)
+ 
         const showRes = await axios.get(`https://api.tvmaze.com/shows/${id}`);
-        // 2. Bölüm Listesi (axios, Ayrı API çağrısı)
+     
         const episodesRes = await axios.get(`https://api.tvmaze.com/shows/${id}/episodes`);
         
         setShow(showRes.data);
@@ -34,7 +34,7 @@ const ShowDetail = () => {
     fetchDetails();
   }, [id]);
 
-  // Koşullu Render
+
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorMessage message={error} />;
   if (!show) return <div className="empty-state">Dizi bulunamadı.</div>;
@@ -64,7 +64,7 @@ const ShowDetail = () => {
 
       <div className="episode-list-container">
         <h3>Bölümler ({episodes.length})</h3>
-        {/* Bölüm Listesi */}
+        {}
         <ul className='episode-list'>
           {episodes.map((ep) => (
             <li key={ep.id}>
