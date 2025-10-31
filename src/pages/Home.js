@@ -15,17 +15,16 @@ const Home = () => {
   const { state, dispatch } = useContext(AppContext);
   const { query, data, loading, error, currentPage, pageSize, filters } = state;
 
-  // useE?ect: API'den veriyi çekme (Zorunlu)
+ 
   useEffect(() => {
     let isMounted = true;
-    
-    // Query boşsa arama yapma
+
     if (!query) return;
 
     const fetchShows = async () => {
       dispatch({ type: ACTIONS.FETCH_INIT });
       try {
-        // Axios: Gerçek HTTP isteği (Zorunlu)
+
         const result = await axios.get(`https://api.tvmaze.com/search/shows?q=${query}`);
         
         if (isMounted) {
@@ -43,29 +42,28 @@ const Home = () => {
     return () => {
         isMounted = false;
     };
-  }, [query, dispatch]); // query değiştiğinde tekrar çalışır
+  }, [query, dispatch]); 
 
-  // Filtreleme ve Sayfalandırma (Client-Side)
+
   const paginatedAndFilteredData = useMemo(() => {
-    // 1. Filtreleme
+
     const filtered = data.filter(item => {
       const show = item;
       const rating = show.rating?.average || 0;
-      // Basit rating filtresi kullanılıyor
+   
       const ratingMatch = rating >= filters.minRating; 
       
       return ratingMatch;
     });
 
-    // 2. Sayfalandırma
+
     const start = (currentPage - 1) * pageSize;
     const end = start + pageSize;
     
-    // Toplam sayfa sayısını güncellemek için dispatch (Filtrelenen veri üzerinden hesaplanmalı)
+
     const newTotalPages = Math.ceil(filtered.length / pageSize);
     if (state.totalPages !== newTotalPages && data.length > 0) {
-        // Normalde dispatch useMemo içinde yapılmaz ancak sayfalandırmanın dinamik çalışması için şart
-        // Burada totalPages'i güncelleyen yeni bir aksiyon tanımlanabilir. Basitlik için AppReducer içindeki hesaplama kullanılıyor.
+
     }
 
     return filtered.slice(start, end);
@@ -81,7 +79,7 @@ const Home = () => {
 
       <main className="main-layout">
         <section className="tv-list-section">
-          {/* Conditional Rendering: Yükleniyor, Hata, Boş Liste (Zorunlu) */}
+          {}
           {loading ? (
             <LoadingSpinner />
           ) : error ? (
@@ -101,7 +99,7 @@ const Home = () => {
         <WatchlistPanel watchlist={state.watchlist} dispatch={dispatch} />
       </main>
 
-      <Footer name="[Adınızı Soyadınızı Buraya Yazın]" />
+      <Footer name="Emir OMRAK" />
     </div>
   );
 };
